@@ -4,7 +4,6 @@ import { Box } from "@mui/system";
 import './style.tsx';
 import { aboutB1, firstAnimation, secondAnimation } from "./style";
 
-
 interface IProps {
     active: boolean,
     setActive: Dispatch<SetStateAction<boolean>>,
@@ -16,9 +15,9 @@ const About: FC<IProps> = ({active, setActive}) => {
 
     const eventTrigger = () => {
         if(!finish){
-            setFinish(true)
+            setFinish(true);
         } else {
-            setTimeout(() => setActive(true), 2000)
+            setTimeout(() => setActive(true), 2000);
         }
     }
 

@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Socials from './Socials';
 import About from './About'
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { homeB1, software, developer, andrew, homeB2, homeB3, homeB4 } from './style';
 import Nav from './Nav';
-import { truncateSync } from 'fs';
-
 
 const Home = () => {
     const [active, setActive] = useState(false);
-    const homePage = true
+    const homePage = true;
 
     return (
         <Box sx={homeB1}>

@@ -33,7 +33,6 @@ export const aboutB1 = {
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    // border: '1px solid red',
 }
 
 
@@ -46,7 +45,6 @@ export const homeB1 = {
     height: '100vh',
     width: '100vw',
     background: 'black',
-    // border: '1px solid red',
 }
 
 export const software = {
@@ -91,7 +89,7 @@ export const homeB4 = {
     left: '0',
     display: 'flex',
     flexDirection: 'column',
-    border: '1px solid red',
+    // border: '1px solid red',
     gap: 1.5,  
 }
 

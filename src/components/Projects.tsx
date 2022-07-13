@@ -1,7 +1,6 @@
 import { Typography, Box } from "@mui/material";
 import Nav from './Nav';
-import { homeB3, projectsB2 } from "./style";
-// import { projects } from "../projects"
+import { projectsB2 } from "./style";
 
 const Projects = () => {
     const projectPage = true
@@ -11,18 +10,16 @@ const Projects = () => {
         id='projects'
         sx={{
             position: 'relative',
-            // padding: 0,
             width: '100vw',
             height: '100vh',
-            border: '1px solid red',
+            backgroundColor: 'white',
         }}
     >
       <Typography 
             sx={{
                 fontSize: '14vw',
                 fontWeight: '300',
-                lineHeight: '0.6',
-                border: '1px solid red',
+                lineHeight: '0.65',
                 color: 'black',
             }}
         >
