@@ -8,6 +8,8 @@ export const theme = createTheme({
         root: {
           fontFamily: 'Titillium Web',
           color: '#c3ca86',
+          padding: '0',
+          margin: '0',
         },
       },
     },

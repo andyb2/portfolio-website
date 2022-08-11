@@ -5,26 +5,37 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { homeB1, software, developer, andrew, homeB2, homeB3, homeB4 } from './style';
 import Nav from './Nav';
+import Intro from './Intro';
 
 const Home = () => {
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(true);
     const homePage = true;
 
     return (
-        <Box sx={homeB1}>
-            <Box sx={{width: '100%'}}>
-                <Typography id='about' sx={software}> 
-                    SOFTWARE 
-                </Typography>
-                <Typography sx={developer}>
-                    DEVELOPER
+        <Box id='about' sx={homeB1}>
+            <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                <Box sx={{width: '100%'}}>
+                    <Typography sx={software}> 
+                        SOFTWARE 
+                    </Typography>
+                    <Typography sx={developer}>
+                        DEVELOPER
+                    </Typography>
+                </Box>
+                <Typography sx={andrew}>
+                    ANDREW BOYLE
                 </Typography>
             </Box>
-            <Typography sx={andrew}>
-                ANDREW BOYLE
-            </Typography>
+            {
+                !active && 
+                    <Box sx={{
+                        display: 'flex',
+                    }}>
+                        <About />
+                    </Box>
+            }
             <Box sx={homeB2}>
-                <About active={active} setActive={setActive}/>
+                { active && <Intro active={active} setActive={setActive}/> }
             </Box>
             <Box sx={homeB3}>
                 <Nav home={homePage}/>

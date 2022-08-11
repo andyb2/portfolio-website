@@ -38,10 +38,12 @@ export const aboutB1 = {
 
 // Home.tsx
 export const homeB1 = {
+    // border: '1px solid red',
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     height: '100vh',
     width: '100vw',
     background: 'black',
@@ -66,10 +68,15 @@ export const developer = {
 export const andrew = {
     fontSize: '14vw',
     fontWeight: '300',
+    margin: '0',
+    padding: '0',
     lineHeight: '0.65',
+    // lineHeight: '0.8',
+    paddingBottom: '0.5rem',
 }
 
 export const homeB2 = {
+    // border: '1px solid red',
     height: '100vh',
     width: '100vw',
     display: 'flex',
@@ -89,7 +96,6 @@ export const homeB4 = {
     left: '0',
     display: 'flex',
     flexDirection: 'column',
-    // border: '1px solid red',
     gap: 1.5,  
 }
 

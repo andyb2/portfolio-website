@@ -1,6 +1,8 @@
-import { FC } from "react"
-import { Typography } from "@mui/material"
-import { Link } from "react-scroll"
+import { FC } from "react";
+import { Typography } from "@mui/material";
+import { Link } from "react-scroll";
+import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
+
 
 interface IProps {
   home?: boolean,
@@ -8,11 +10,16 @@ interface IProps {
 }
 
 const Nav: FC<IProps> = ({ home, project }) => {
+    const scrollToTop = () => {
+      console.log(`clicked`)
+      window.scrollTo(0, 0);
+    }
+
     return (
       <>
         { 
           home &&
-            <Link to="projects" spy={true} smooth={true} duration={500}>
+            <Link to='projects' spy={true} smooth={true} duration={500}>
               <Typography sx={{ fontSize: '3rem', fontWeight: '300', padding: '0.5rem', '&:hover': { cursor: 'pointer' } }}>PROJECTS</Typography>
             </Link>  
         }
