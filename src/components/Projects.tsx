@@ -23,8 +23,8 @@ const Projects = () => {
         id='projects'
         sx={{
             position: 'relative',
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%',
             backgroundColor: 'white',
             display: 'flex',
             flexDirection: 'column',
@@ -36,6 +36,9 @@ const Projects = () => {
                     lineHeight: '0.65',
                     paddingBottom: '1.8rem',
                     color: 'black',
+                    '@media (orientation: landscape)': {
+                        fontSize: '11vw',
+                    },
                 }}
         >
            PROJECTS
@@ -61,15 +64,26 @@ const Projects = () => {
                                 display: 'flex',
                                 justifyContent: 'flex-start',
                                 flexDirection: transitioned === idx ? 'row' : 'column',
-                                // gap: '10rem',
-                                padding: '1rem',
+                                padding: '2rem',
                                 transition: '1s',
                                 ':hover': {
                                     background: 'white',
                                     flex: '2',
                                     border: 'none',
-                            },  
-                        }}>
+                                    '@media (max-width: 330px)': {
+                                        padding: '0.1rem',
+                                    },
+                                    '@media (max-width: 1000px)': {
+                                        '@media (orientation: landscape)': {
+                                            padding: '0.1rem',
+                                        }
+                                    }
+                                },
+                                '@media (max-width: 1000px)': {
+                                    padding: '1rem',
+                                },
+                             }}
+                        >
                             <Typography sx={{
                                     display: transitioned === idx ? 'none' : 'flex',
                                     whiteSpace: 'pre',
@@ -78,9 +92,6 @@ const Projects = () => {
                                     zIndex: '100',
                                     color: 'black',        
                                     transform: 'rotate(90deg)',
-                                    // '@media (max-width: 1000px)': {
-                                    //     fontSize: '25px',
-                                    // }
                                 }}>
                                     { project.title }
                             </Typography>
@@ -91,6 +102,11 @@ const Projects = () => {
                                     padding: '2rem',
                                     '@media (max-width: 600px)': {
                                         padding: '0'
+                                    },
+                                    '@media (orientation: landscape)': {
+                                        '@media (max-width: 1000px)': {
+                                            padding: '0',
+                                        }
                                     }
                                 }}>
                                     <Box component='h1'
@@ -106,6 +122,13 @@ const Projects = () => {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         marginBottom: '1rem',
+                                        '@media (max-width: 1000px)': {
+                                            '@media (orientation: landscape)': {
+                                                flexDirection: 'row',
+                                                gap: '0.5rem',
+                                                marginBottom: '0.5rem',
+                                             },  
+                                        },  
                                     }}>
                                         {
                                             project.tech.map((tech, idx) => {
@@ -122,7 +145,7 @@ const Projects = () => {
                                         }
                                     </Box>
                                     <Box sx={{
-                                            padding: '2rem', 
+                                            overflow: 'hidden', 
                                             maxWidth: '60%',
                                             minWidth: '60%',
                                             width: '60%',
@@ -132,7 +155,18 @@ const Projects = () => {
                                                 width: '100%',
                                                 maxWidth: 'none',
                                                 minWidth: 'none',
-                                            }
+                                            },
+                                            '@media (max-width: 330px)': {
+                                                fontSize: '12px',
+                                            },
+                                            '@media (max-width: 900px)': {
+                                                '@media (orientation: landscape)': {
+                                                    padding: '0',
+                                                    width: '100%',
+                                                    maxWidth: '600px',
+                                                    minWidth: 'none',
+                                                },
+                                            },
                                             }}>
                                         { project.description }
                                     </Box>
@@ -142,6 +176,12 @@ const Projects = () => {
                                                 padding: '0',
                                                 fontSize: '12px',
                                                 marginTop: '2rem',
+                                            },
+                                            '@media (max-width: 1000px)': {
+                                                '@media (orientation: landscape)': {
+                                                    padding: '0',
+                                                    marginTop: '1rem',
+                                                },
                                             }
                                         }}>
                                         <Link href={`${idx === 0 ? 'https://github.com/andyb2/Spotify-User-Profile' : project.link}`} target='_blank'>

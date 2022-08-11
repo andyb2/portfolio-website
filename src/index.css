@@ -13,16 +13,5 @@ body, html, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  /* overflow: auto; */
-  /* overflow-x: hidden; */
   font-family: 'Titillium Web'
 }
-
-/* ::-webkit-scrollbar {
-  width: 7px;
-  background-color: rgb(173, 173, 173);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgb(97, 97, 97);
-} */

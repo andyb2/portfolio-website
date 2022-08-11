@@ -2,7 +2,14 @@ import { useState, useEffect, FC } from "react";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import './style.tsx';
-import { aboutB1, firstAnimation, secondAnimation } from "./style";
+import { firstAnimation, secondAnimation } from "./style";
+
+export const introBox1 = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+}
 
 interface IProps {
     active: boolean
@@ -26,7 +33,7 @@ const Intro = ({ active, setActive }: IProps) => {
     }, [finish])
 
     return (
-        <Box sx={aboutB1}>
+        <Box sx={introBox1}>
             <Typography component='div'>
                 {
                     contents.map((snippet, idx) => {

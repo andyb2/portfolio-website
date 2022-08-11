@@ -14,13 +14,31 @@ const Nav: FC<IProps> = ({ home, project }) => {
         { 
           home &&
             <Link to='projects' spy={true} smooth={true} duration={500}>
-              <Typography sx={{ fontSize: '3rem', fontWeight: '300', padding: '0.5rem', '&:hover': { cursor: 'pointer' } }}>PROJECTS</Typography>
+              <Typography sx={{ 
+                position: 'relative',
+                            zIndex: '100',
+                            fontSize: '3rem',
+                            fontWeight: '300',
+                            margin: '0',
+                            padding: '0',
+                            '&:hover': { 
+                                cursor: 'pointer'
+                            },
+                            '@media (max-width: 700px)': {
+                              fontSize: '2.5rem',
+                            }
+                          }}
+              >
+                PROJECTS
+              </Typography>
             </Link>  
         }
         {
           project && 
               <Link to="about" spy={true} smooth={true} duration={500}>
-                <Typography sx={{padding: 0, fontSize: '3rem', fontWeight: '300', color: 'black', '&:hover': { cursor: 'pointer' } }}>ABOUT</Typography>
+                <Typography sx={{padding: 0, fontSize: '3rem', fontWeight: '300', color: 'black', '&:hover': { cursor: 'pointer' } }}>
+                  ABOUT
+                </Typography>
               </Link>
         }
       </>
