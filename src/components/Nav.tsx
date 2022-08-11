@@ -1,8 +1,6 @@
 import { FC } from "react";
 import { Typography } from "@mui/material";
 import { Link } from "react-scroll";
-import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
-
 
 interface IProps {
   home?: boolean,
@@ -10,10 +8,6 @@ interface IProps {
 }
 
 const Nav: FC<IProps> = ({ home, project }) => {
-    const scrollToTop = () => {
-      console.log(`clicked`)
-      window.scrollTo(0, 0);
-    }
 
     return (
       <>
