@@ -23,7 +23,28 @@ const About = () => {
                 {
                     letters.map(letter => {
                         return (
-                            <Typography key={letter} sx={{fontSize: '14vw', lineHeight: '0.8', textAlign: 'center'}}>
+                            <Typography key={letter} 
+                                        sx={{
+                                            fontSize: '150px',
+                                            lineHeight: '0.8',
+                                            textAlign: 'center',
+                                            '@media (max-width: 1100px)': {
+                                                fontSize: '125px'
+                                            },
+                                            '@media (max-width: 900px)': {
+                                                fontSize: '100px',
+                                            },
+                                            '@media (max-width: 700px)': {
+                                                fontSize: '75px',
+                                            },
+                                            '@media (max-width: 530px)': {
+                                                fontSize: '50px',
+                                            },
+                                            '@media (max-width: 350px)': {
+                                                fontSize: '40px',
+                                            },
+                                        }}
+                            >
                                 { letter }
                             </Typography>
                         )

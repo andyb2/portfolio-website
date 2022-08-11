@@ -33,19 +33,19 @@ export const aboutB1 = {
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+    height: '100%',
+    minHeight: '100%',
 }
 
 
 // Home.tsx
 export const homeB1 = {
-    // border: '1px solid red',
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    height: '100vh',
-    width: '100vw',
+    height: '100%',
+    width: '100%',
+    minHeight: '100%',
     background: 'black',
 }
 
@@ -77,8 +77,9 @@ export const andrew = {
 
 export const homeB2 = {
     // border: '1px solid red',
-    height: '100vh',
-    width: '100vw',
+    height: '100%',
+    width: '100%',
+    minHeight: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
