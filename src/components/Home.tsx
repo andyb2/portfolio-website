@@ -6,6 +6,8 @@ import { Box } from '@mui/system';
 import { homeB3 } from './style';
 import Nav from './Nav';
 import Intro from './Intro';
+import ViewportHeight from './ViewportHeight';
+// import './home.css';
 
 export const homeB1 = {
     position: 'relative',
@@ -79,7 +81,7 @@ const Home = () => {
     const homePage = true;
     
     return (
-        <Box id='about' sx={homeB1}>
+        <Box className='test' id='about' sx={homeB1}>
             <Box sx={{display: 'flex', flexDirection: 'column'}}>
                 <Box sx={{width: '100%'}}>
                     <Typography sx={software}> 

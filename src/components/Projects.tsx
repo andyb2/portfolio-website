@@ -25,7 +25,6 @@ const Projects = () => {
             position: 'relative',
             width: '100%',
             height: '100%',
-            minHeight: '100%',
             backgroundColor: 'white',
             display: 'flex',
             flexDirection: 'column',
@@ -60,7 +59,7 @@ const Projects = () => {
                              onMouseLeave={() => boxClosed(false)}
                              key={`${project.title}${idx}`}
                              sx={{
-                                height: '100%',
+                                // height: '100%',
                                 background: 'lightgrey',
                                 display: 'flex',
                                 justifyContent: 'flex-start',

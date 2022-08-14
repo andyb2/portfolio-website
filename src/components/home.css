@@ -1,0 +1,4 @@
+.test {
+    height: var(--doc-height);
+    min-height: var(--doc-height);
+}
