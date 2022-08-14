@@ -24,7 +24,8 @@ const Projects = () => {
         sx={{
             position: 'relative',
             width: '100%',
-            height: 'var(--doc-height)',
+            height: '100%',
+            minHeight: '100%',
             backgroundColor: 'white',
             display: 'flex',
             flexDirection: 'column',

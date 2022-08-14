@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const ViewportHeight = () => {
     const [height, setHeight] = useState<number>(window.innerHeight);
-
+    
     useEffect(() => {
         const getHeight = () => {
             setHeight(window.innerHeight);

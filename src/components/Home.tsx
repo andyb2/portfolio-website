@@ -77,7 +77,7 @@ export const homeB4 = {
 const Home = () => {
     const [active, setActive] = useState(true);
     const homePage = true;
-
+    
     return (
         <Box id='about' sx={homeB1}>
             <Box sx={{display: 'flex', flexDirection: 'column'}}>

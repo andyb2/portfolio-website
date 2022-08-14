@@ -12,7 +12,7 @@ html {
   background-color: black;
 }
 
-body, html, #root {
+body, html {
   width: 100%;
   height: var(--doc-height);
   margin: 0;
