@@ -21,10 +21,11 @@ const AboutTextContainer = styled.div<Height>`
 `
 
 const AboutText = styled.p<Height>`
-    font-size: ${({ height }) => height <= 420 ? '18px' : '25px'};
+    font-size: ${({ height }) => height <= 420 ? '16px' : '25px'};
     color: #c3ca86;
     display: flex;
     justify-content: center;
+    margin: ${({ height }) => height <= 420 ? '0.1rem' : '1rem'};
     text-align: center;
     width: 100%;
     @media (max-width: 600px) {
