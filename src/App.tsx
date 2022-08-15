@@ -4,8 +4,6 @@ import { theme } from './theme';
 import Home from './components/Home';
 import Projects from './components/Projects';
 import ViewportHeight from './components/ViewportHeight';
-import './App.css';
-
 
 function App() {
   const [height, setHeight] = useState<number>(window.innerHeight);

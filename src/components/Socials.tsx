@@ -7,9 +7,6 @@ const style = {
     color: '#c3ca86',
     fontSize: '35px',
     marginLeft: '0.1rem',
-    // '@media (orientation: landscape)': {
-    //     fontSize: '40px',
-    // },
 }
 
 const Socials = () => {

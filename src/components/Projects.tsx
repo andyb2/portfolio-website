@@ -3,6 +3,7 @@ import { Typography, Box, Link } from "@mui/material";
 import Nav from './Nav';
 import { projects } from '../projects';
 import styled from "@emotion/styled";
+import { Height } from './Home';
 
 const projectContainer = {
     position: 'relative',
@@ -13,10 +14,6 @@ const projectContainer = {
     flexDirection: 'column',
 }
 
-interface Height {
-    height: number
-}
-
 const ProjectsTitle = styled.div<Height>`
     font-size: ${({ height }) => height <= 420 ? '8vw' : '13vw'};
     font-weight: 300;
@@ -24,6 +21,48 @@ const ProjectsTitle = styled.div<Height>`
     padding-bottom: 1.8rem;
     color: black;
 `
+
+const projectsListContainer = {
+    position: 'relative',
+    display: 'flex',
+    color: 'black',
+    gap: '1rem',
+    height: '100%',
+    maxWidth: '1000px',
+}
+
+const projectsVerticalName = {
+    whiteSpace: 'pre',
+    fontSize: '30px',
+    zIndex: '100',
+    color: 'black',
+    transform: 'rotate(90deg)',
+}
+
+const projectList = {
+    background: 'lightgrey',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    padding: '2rem',
+    transition: '1s',
+    ':hover': {
+        background: 'white',
+        flex: '2',
+        marginLeft: '0.5rem',
+        border: 'none',
+        '@media (max-width: 330px)': {
+            padding: '0.1rem',
+        },
+        '@media (max-width: 1000px)': {
+            '@media (orientation: landscape)': {
+                padding: '0.1rem',
+            }
+        }
+    },
+    '@media (max-width: 1000px)': {
+        padding: '1rem',
+    },
+}
 
 const projectName = {
     '@media (max-width: 600px)': {
@@ -78,7 +117,20 @@ const projectDescription: any = {
             minWidth: 'none',
         },
     },
+}
+
+const expandedProject = {
+    width: '100%', 
+    padding: '2rem',
+    '@media (max-width: 600px)': {
+        padding: '0'
+    },
+    '@media (orientation: landscape)': {
+        '@media (max-width: 1000px)': {
+            padding: '0',
+        }
     }
+}
 
 const linkContainer: any = {
     padding: '2rem',
@@ -104,12 +156,8 @@ const projectsB2 = {
     pr: '1rem'
 }
 
-interface Height {
-    height: number
-}
-
 const Projects = ({ height }: Height) => {
-    const [transitioned, setTransitioned] = useState<boolean | number>(false);
+    const [ transitioned, setTransitioned ] = useState<boolean | number>(false);
     const projectPage = true;
     let timeout: NodeJS.Timeout;
 
@@ -127,95 +175,52 @@ const Projects = ({ height }: Height) => {
         <ProjectsTitle height={height}>
            PROJECTS
         </ProjectsTitle>
-        <Box sx={{
-                position: 'relative',
-                display: 'flex',
-                color: 'black',
-                gap: '1rem',
-                height: '100%',
-                maxWidth: '1000px',
-            }}>
+        <Box sx={projectsListContainer}>
             {
                 projects.map((project, idx) => {
-                    
+                    const selected = transitioned === idx; 
                     return (
                         <Box onMouseEnter={() => boxExpanded(idx)}
                              onMouseLeave={() => boxClosed(false)}
                              key={`${project.title}${idx}`}
                              sx={{
-                                background: 'lightgrey',
-                                display: 'flex',
-                                justifyContent: 'flex-start',
-                                flexDirection: transitioned === idx ? 'row' : 'column',
-                                padding: '2rem',
-                                transition: '1s',
-                                ':hover': {
-                                    background: 'white',
-                                    flex: '2',
-                                    marginLeft: '0.5rem',
-                                    border: 'none',
-                                    '@media (max-width: 330px)': {
-                                        padding: '0.1rem',
-                                    },
-                                    '@media (max-width: 1000px)': {
-                                        '@media (orientation: landscape)': {
-                                            padding: '0.1rem',
-                                        }
-                                    }
-                                },
-                                '@media (max-width: 1000px)': {
-                                    padding: '1rem',
-                                },
+                                flexDirection: selected ? 'row' : 'column',
+                                ...projectList
                              }}
                         >
                             <Typography sx={{
-                                    display: transitioned === idx ? 'none' : 'flex',
-                                    whiteSpace: 'pre',
-                                    fontSize: '30px',
-                                    width: transitioned === idx ? 'none' : '1rem',
-                                    zIndex: '100',
-                                    color: 'black',        
-                                    transform: 'rotate(90deg)',
+                                    display: selected ? 'none' : 'flex',
+                                    width: selected ? 'none' : '1rem',
+                                    ...projectsVerticalName
                                 }}>
                                     { project.title }
                             </Typography>
                             {
-                                transitioned === idx &&
-                                <Box sx={{
-                                    width: '100%', 
-                                    padding: '2rem',
-                                    '@media (max-width: 600px)': {
-                                        padding: '0'
-                                    },
-                                    '@media (orientation: landscape)': {
-                                        '@media (max-width: 1000px)': {
-                                            padding: '0',
-                                        }
-                                    }
-                                }}>
-                                    <Box component='h1' sx={projectName}>
-                                        {project.title}
+                                selected &&
+                                    <Box sx={expandedProject}>
+                                        <Box component='h1' sx={projectName}>
+                                            {project.title}
+                                        </Box>
+                                        <Box sx={techContainer}>
+                                            {
+                                                project.tech.map((tech, idx) => {
+                                                    return (
+                                                        <Box key={`${tech}${Math.random()*idx*7}`} sx={technology}>
+                                                            { tech }
+                                                        </Box>
+                                                    )
+                                                })
+                                            }
+                                        </Box>
+                                        <Box sx={projectDescription}>
+                                            { project.description }
+                                        </Box>
+                                        <Box sx={linkContainer}>
+                                            <Link href={`${idx === 0 ? 'https://github.com/andyb2/Spotify-User-Profile' : project.link}`} target='_blank'>
+                                                { project.link }
+                                            </Link>
+                                        </Box>
                                     </Box>
-                                    <Box sx={techContainer}>
-                                        {
-                                            project.tech.map((tech, idx) => {
-                                                return (
-                                                    <Box key={`${tech}${Math.random()*idx*7}`} sx={technology}>
-                                                        { tech }
-                                                    </Box>
-                                                )
-                                            })
-                                        }
-                                    </Box>
-                                    <Box sx={projectDescription}>
-                                        { project.description }
-                                    </Box>
-                                    <Box sx={linkContainer}>
-                                        <Link href={`${idx === 0 ? 'https://github.com/andyb2/Spotify-User-Profile' : project.link}`} target='_blank'>
-                                            { project.link }
-                                        </Link>
-                                    </Box>
-                                </Box>
                             }
                         </Box>
                     )

@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import Socials from './Socials';
 import About from './About'
-import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Nav from './Nav';
 import Intro from './Intro';
 import styled from '@emotion/styled';
 
-interface Height {
+export interface Height {
     height: number
 }
 
@@ -16,6 +15,7 @@ const Andrew = styled.div<Height>`
     font-size: ${({ height }) => height <= 420 ? '8vw' : '13vw'};
     font-weight: 300;
     margin: 0;
+    margin-bottom: 0.1rem;
     padding: 0;
     line-height: 0.65;
     padding-bottom: 0.5rem;
@@ -72,19 +72,15 @@ const homeB3 = {
     right: '0',
 }
 
-const homeB4 = {
+const socials = {
     position: 'absolute',
     zIndex: '100',
     bottom: '0',
     left: '0',
-    marginBottom: '1rem',
+    marginBottom: '0.4rem',
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.1rem',  
-}
-
-interface Height {
-    height: number
+    gap: '0.1rem',
 }
 
 const Home = ({ height }: Height) => {
@@ -119,7 +115,7 @@ const Home = ({ height }: Height) => {
             <Box sx={homeB3}>
                 <Nav home={homePage}/>
             </Box>
-            <Box sx={homeB4}>
+            <Box sx={socials}>
                 <Socials />
             </Box>
         </Box>

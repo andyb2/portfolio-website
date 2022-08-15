@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface Height {
     height: number
@@ -6,7 +6,6 @@ interface Height {
 }
 
 const ViewportHeight = ({ height, setHeight }: Height): any => {
-    // const [height, setHeight] = useState<number>(window.innerHeight);
     
     useEffect(() => {
         const getHeight = () => {

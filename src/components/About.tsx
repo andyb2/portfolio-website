@@ -1,10 +1,40 @@
 import { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
+import { Height } from './Home';
 
-interface Height {
-    height: number
+const aboutContainer = {
+    minWidth: '100%',
+    padding: '0.5rem 0 0.5rem 0',
+    zIndex: '100',
+    height: '100%',
+    minHeight: '100%',
+}
+
+const aboutContentSpacer = {
+    display: 'flex',
+    flexDirection: 'column',
+    height:'100%', 
+    justifyContent: 'space-between',
+}
+
+const topLineContainer = {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'flex-start',
+}
+
+const bottomLineContainer = {
+    display: 'flex', 
+    width: '100%', 
+    justifyContent: 'flex-end',
+}
+
+const aboutTextCenterContent = {
+    display: 'flex', 
+    width: '100%', 
+    justifyContent: 'center',
+    alignItems: 'center'
 }
 
 const AboutTextContainer = styled.div<Height>`
@@ -46,39 +76,8 @@ const line = {
     '&.active': {
         width: 'none',
         flex: '2',
-        height: '6px',
+        height: '4px',
         backgroundColor: '#c3ca86',
-    }
-}
-
-const aboutText: any = {
-    fontSize: '25px',
-    display: 'flex',
-    justifyContent: 'center',
-    textAlign: 'center',
-    width: '100%',
-    '@media (max-width: 900px)': {
-        fontSize: '20px',
-    },
-    '@media (max-width: 700px)': {
-        '@media (orientation: landscape)': {
-            fontSize: '16px',
-        }
-    }
-}
-
-const aboutTextContainer: any = {
-    display: 'flex', 
-    maxWidth: '800px', 
-    gap: '1rem',
-    flexDirection: 'column', 
-    justifyContent: 'center',
-    alignItems: 'center', 
-    padding: '0 2rem 0 2rem',
-    '@media (max-width: 700px)': {
-        '@media (orientation: landscape)': {
-            gap: '0.1rem',
-        }
     }
 }
 
@@ -95,20 +94,12 @@ const About = ({ active, height }: Active) => {
     }, [active])
 
     return (
-        <Box sx={{
-            minWidth: '100%',
-            padding: '0.5rem 0 0.5rem 0',
-            zIndex: '100',
-            height: '100%',
-            minHeight: '100%',
-        }}>
-            <Box sx={{display: 'flex', flexDirection: 'column', height:'100%', justifyContent: 'space-between'}}>
-                <Box sx={{display: 'flex', width: '100%', justifyContent: 'flex-start'}}>
-                    <Box className={`${ animate ? 'active' : '' }`} sx={line}>
-                    
-                    </Box>
+        <Box sx={aboutContainer}>
+            <Box sx={aboutContentSpacer}>
+                <Box sx={topLineContainer}>
+                    <Box className={`${ animate ? 'active' : '' }`} sx={line} />
                 </Box>
-                <Box sx={{display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+                <Box sx={aboutTextCenterContent}>
                     <AboutTextContainer height={height}>
                         <AboutText height={height}> 
                             Hi! I'm Andrew, and I'm an aspiring software developer.
@@ -121,10 +112,8 @@ const About = ({ active, height }: Active) => {
                         </AboutText>
                     </AboutTextContainer>
                 </Box>
-                <Box sx={{display: 'flex', width: '100%', justifyContent: 'flex-end'}}>
-                    <Box className={`${ animate ? 'active' : '' }`} sx={line}>
-                    
-                    </Box>
+                <Box sx={bottomLineContainer}>
+                    <Box className={`${ animate ? 'active' : '' }`} sx={line} />
                 </Box>
             </Box>
         </Box>
