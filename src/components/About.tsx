@@ -1,6 +1,41 @@
 import { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import styled from "@emotion/styled";
+
+interface Height {
+    height: number
+}
+
+const AboutTextContainer = styled.div<Height>`
+    display: flex; 
+    max-width: 800px; 
+    gap: ${({ height }) => height <= 420 ? '0.1rem' : '1rem'};
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    padding: 0 2rem 0 2rem;
+    @media (max-width: 600px) {
+        gap: 0.1rem;
+    }
+`
+
+const AboutText = styled.p<Height>`
+    font-size: ${({ height }) => height <= 420 ? '18px' : '25px'};
+    color: #c3ca86;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    @media (max-width: 600px) {
+        margin: 0;
+        padding: 0.5rem;
+        width: 90%;
+    }
+    @media (max-width: 550px) {
+        font-size: 18px;
+    }
+`
 
 const line = {
     display: 'flex',
@@ -48,9 +83,10 @@ const aboutTextContainer: any = {
 
 interface Active {
     active: boolean
+    height: number
 }
 
-const About = ({ active }: Active) => {
+const About = ({ active, height }: Active) => {
     const [ animate, setAnimate ] = useState(false);
 
     useEffect(() => {
@@ -72,17 +108,17 @@ const About = ({ active }: Active) => {
                     </Box>
                 </Box>
                 <Box sx={{display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
-                    <Box sx={aboutTextContainer}>
-                        <Typography sx={aboutText}> 
+                    <AboutTextContainer height={height}>
+                        <AboutText height={height}> 
                             Hi! I'm Andrew, and I'm an aspiring software developer.
-                        </Typography>
-                        <Typography sx={aboutText}>
+                        </AboutText>
+                        <AboutText height={height}>
                             I enjoy spending my time researching and developing various types of applications.
-                        </Typography>
-                        <Typography sx={aboutText}>
+                        </AboutText>
+                        <AboutText height={height}>
                             Sprinkle a little golf, hockey and videogames in there and you've got me figured out.
-                        </Typography>
-                    </Box>
+                        </AboutText>
+                    </AboutTextContainer>
                 </Box>
                 <Box sx={{display: 'flex', width: '100%', justifyContent: 'flex-end'}}>
                     <Box className={`${ animate ? 'active' : '' }`} sx={line}>

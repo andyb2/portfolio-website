@@ -1,10 +1,37 @@
 import { useState, useEffect, FC } from "react";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import './style.tsx';
-import { firstAnimation, secondAnimation } from "./style";
+import { keyframes } from "@emotion/react";
 
-export const introBox1 = {
+const firstAnimation = keyframes`
+    0% {
+        color: black
+    } 
+    15% {
+        color: black
+    }
+    25% {
+        color: black
+    }
+    75% {
+        color: #c3ca86
+    }
+    100% {
+        color: #c3ca86
+    }
+`
+
+const secondAnimation = keyframes`
+    0%,
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+`
+
+const introBox1 = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

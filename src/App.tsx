@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import Home from './components/Home';
@@ -7,12 +8,12 @@ import './App.css';
 
 
 function App() {
-  console.log(window.innerHeight);
+  const [height, setHeight] = useState<number>(window.innerHeight);
   return (
     <ThemeProvider theme={theme}>
-          <ViewportHeight />
-          <Home />
-          <Projects />
+          <ViewportHeight height={height} setHeight={setHeight}/>
+          <Home height={height} />
+          <Projects height={height} />
     </ ThemeProvider>
   );
 }

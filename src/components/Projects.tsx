@@ -1,10 +1,44 @@
 import { useState } from "react";
 import { Typography, Box, Link } from "@mui/material";
 import Nav from './Nav';
-import { projectsB2 } from "./style";
 import { projects } from '../projects';
+import styled from "@emotion/styled";
 
-const Projects = () => {
+const projectContainer = {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+}
+
+interface Height {
+    height: number
+}
+
+const ProjectsTitle = styled.div<Height>`
+    font-size: ${({ height }) => height <= 420 ? '8vw' : '13vw'};
+    font-weight: 300;
+    line-height: 0.65;
+    padding-bottom: 1.8rem;
+    color: black;
+`
+
+const projectsB2 = {
+    position: 'absolute',
+    color: 'red',
+    bottom: '0',
+    verticalAlign: 'text-bottom',
+    right: '0',
+    pr: '1rem'
+}
+
+interface Height {
+    height: number
+}
+
+const Projects = ({ height }: Height) => {
     const [transitioned, setTransitioned] = useState<boolean | number>(false);
     const projectPage = true;
     let timeout: NodeJS.Timeout;
@@ -19,30 +53,10 @@ const Projects = () => {
     }
 
     return (
-    <Box
-        id='projects'
-        sx={{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-            display: 'flex',
-            flexDirection: 'column',
-        }}
-    >
-      <Typography sx={{
-                    fontSize: '14vw',
-                    fontWeight: '300',
-                    lineHeight: '0.65',
-                    paddingBottom: '1.8rem',
-                    color: 'black',
-                    '@media (orientation: landscape)': {
-                        fontSize: '11vw',
-                    },
-                }}
-        >
+    <Box id='projects' sx={projectContainer}>
+        <ProjectsTitle height={height}>
            PROJECTS
-        </Typography>
+        </ProjectsTitle>
         <Box sx={{
                 position: 'relative',
                 display: 'flex',
@@ -59,7 +73,6 @@ const Projects = () => {
                              onMouseLeave={() => boxClosed(false)}
                              key={`${project.title}${idx}`}
                              sx={{
-                                // height: '100%',
                                 background: 'lightgrey',
                                 display: 'flex',
                                 justifyContent: 'flex-start',
@@ -113,6 +126,11 @@ const Projects = () => {
                                          sx={{
                                             '@media (max-width: 600px)': {
                                                 fontSize: '22px',
+                                            },
+                                            '@media (max-width: 1000px)': {
+                                                '@media (orientation: landscape)': {
+                                                    fontSize: '18px',
+                                                }
                                             }
                                         }}
                                     >

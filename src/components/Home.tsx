@@ -3,13 +3,43 @@ import Socials from './Socials';
 import About from './About'
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { homeB3 } from './style';
 import Nav from './Nav';
 import Intro from './Intro';
-import ViewportHeight from './ViewportHeight';
-// import './home.css';
+import styled from '@emotion/styled';
 
-export const homeB1 = {
+interface Height {
+    height: number
+}
+
+const Andrew = styled.div<Height>`
+    color: #c3ca86;
+    font-size: ${({ height }) => height <= 420 ? '8vw' : '13vw'};
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    line-height: 0.65;
+    padding-bottom: 0.5rem;
+`
+
+const Software = styled.div<Height>`
+    display: inline-block;
+    color: #c3ca86;
+    font-size: ${({ height }) => height <= 420 ? '4vw' : '6vw'};
+    font-weight: 600; 
+    line-height: 0.65;
+`
+
+const Developer = styled.div<Height>`
+    display: inline-block; 
+    color: #c3ca86;
+    border: 1px solid #d4db96;
+    font-size: ${({ height }) => height <= 420 ? '3vw' : '5vw'};
+    font-weight: 200;
+    margin-left: 1;
+    line-height: 0.65;
+`
+
+const homeB1 = {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
@@ -17,35 +47,6 @@ export const homeB1 = {
     width: '100%',
     minHeight: '100%',
     background: 'black',
-}
-
-export const software = {
-    display: 'inline-block',
-    fontSize: '6vw',
-    fontWeight:'600', 
-    lineHeight: '0.65',
-}
-
-export const developer = {
-    display: 'inline-block', 
-    border: '1px solid #d4db96',
-    fontSize: '5vw',
-    fontWeight: '200',
-    ml: 1,
-    lineHeight: '0.65',
-}
-
-
-export const andrew = {
-    fontSize: '14vw',
-    fontWeight: '300',
-    margin: '0',
-    padding: '0',
-    lineHeight: '0.65',
-    paddingBottom: '0.5rem',
-    // '@media (orientation: landscape)': {
-    //     fontSize: '11vw',
-    // }
 }
 
 const about = {
@@ -56,7 +57,7 @@ const about = {
     alignItems: 'center',
 }
 
-export const introduction = {
+const introduction = {
     position: 'absolute',
     height: '100%',
     width: '100%',
@@ -65,7 +66,13 @@ export const introduction = {
     alignItems: 'center',
 }
 
-export const homeB4 = {
+const homeB3 = {
+    position: 'absolute',
+    bottom: '0',
+    right: '0',
+}
+
+const homeB4 = {
     position: 'absolute',
     zIndex: '100',
     bottom: '0',
@@ -76,28 +83,32 @@ export const homeB4 = {
     gap: '0.1rem',  
 }
 
-const Home = () => {
+interface Height {
+    height: number
+}
+
+const Home = ({ height }: Height) => {
     const [active, setActive] = useState(true);
     const homePage = true;
     
     return (
-        <Box className='test' id='about' sx={homeB1}>
+        <Box id='about' sx={homeB1}>
             <Box sx={{display: 'flex', flexDirection: 'column'}}>
                 <Box sx={{width: '100%'}}>
-                    <Typography sx={software}> 
+                    <Software height={height}> 
                         SOFTWARE 
-                    </Typography>
-                    <Typography sx={developer}>
+                    </Software>
+                    <Developer height={height}>
                         DEVELOPER
-                    </Typography>
+                    </Developer>
                 </Box>
-                <Typography sx={andrew}>
+                <Andrew height={height}>
                     ANDREW BOYLE
-                </Typography>
+                </Andrew>
             </Box>
             <Box sx={about}>
                 {
-                    !active && <About active={active}/>
+                    !active && <About active={active} height={height}/>
                 }
             </Box>
             { active && 
