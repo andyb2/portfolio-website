@@ -25,6 +25,76 @@ const ProjectsTitle = styled.div<Height>`
     color: black;
 `
 
+const projectName = {
+    '@media (max-width: 600px)': {
+        fontSize: '22px',
+    },
+    '@media (max-width: 1000px)': {
+        '@media (orientation: landscape)': {
+            fontSize: '18px',
+        }
+    }
+}
+
+const techContainer: any = {
+    display: 'flex',
+    flexDirection: 'column',
+    marginBottom: '1rem',
+    '@media (max-width: 1000px)': {
+        '@media (orientation: landscape)': {
+            flexDirection: 'row',
+            gap: '0.5rem',
+            marginBottom: '0.5rem',
+         },  
+    },  
+}
+
+const technology = {
+    '@media (max-width: 600px)': {
+        fontSize: '14px',
+    }    
+}
+
+const projectDescription: any = {
+    overflow: 'hidden', 
+    maxWidth: '60%',
+    minWidth: '60%',
+    width: '60%',
+    '@media (max-width: 600px)': {
+        padding: '0',
+        fontSize: '16px',
+        width: '100%',
+        maxWidth: 'none',
+        minWidth: 'none',
+    },
+    '@media (max-width: 330px)': {
+        fontSize: '12px',
+    },
+    '@media (max-width: 900px)': {
+        '@media (orientation: landscape)': {
+            padding: '0',
+            width: '100%',
+            maxWidth: '600px',
+            minWidth: 'none',
+        },
+    },
+    }
+
+const linkContainer: any = {
+    padding: '2rem',
+    '@media (max-width: 600px)': {
+        padding: '0',
+        fontSize: '12px',
+        marginTop: '2rem',
+    },
+    '@media (max-width: 1000px)': {
+        '@media (orientation: landscape)': {
+            padding: '0',
+            marginTop: '1rem',
+        },
+    }
+}
+
 const projectsB2 = {
     position: 'absolute',
     color: 'red',
@@ -122,86 +192,24 @@ const Projects = ({ height }: Height) => {
                                         }
                                     }
                                 }}>
-                                    <Box component='h1'
-                                         sx={{
-                                            '@media (max-width: 600px)': {
-                                                fontSize: '22px',
-                                            },
-                                            '@media (max-width: 1000px)': {
-                                                '@media (orientation: landscape)': {
-                                                    fontSize: '18px',
-                                                }
-                                            }
-                                        }}
-                                    >
+                                    <Box component='h1' sx={projectName}>
                                         {project.title}
                                     </Box>
-                                    <Box sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        marginBottom: '1rem',
-                                        '@media (max-width: 1000px)': {
-                                            '@media (orientation: landscape)': {
-                                                flexDirection: 'row',
-                                                gap: '0.5rem',
-                                                marginBottom: '0.5rem',
-                                             },  
-                                        },  
-                                    }}>
+                                    <Box sx={techContainer}>
                                         {
                                             project.tech.map((tech, idx) => {
                                                 return (
-                                                    <Box key={`${tech}${Math.random()*idx*7}`} sx={{
-                                                        '@media (max-width: 600px)': {
-                                                            fontSize: '14px',
-                                                        }    
-                                                    }}>
+                                                    <Box key={`${tech}${Math.random()*idx*7}`} sx={technology}>
                                                         { tech }
                                                     </Box>
                                                 )
                                             })
                                         }
                                     </Box>
-                                    <Box sx={{
-                                            overflow: 'hidden', 
-                                            maxWidth: '60%',
-                                            minWidth: '60%',
-                                            width: '60%',
-                                            '@media (max-width: 600px)': {
-                                                padding: '0',
-                                                fontSize: '16px',
-                                                width: '100%',
-                                                maxWidth: 'none',
-                                                minWidth: 'none',
-                                            },
-                                            '@media (max-width: 330px)': {
-                                                fontSize: '12px',
-                                            },
-                                            '@media (max-width: 900px)': {
-                                                '@media (orientation: landscape)': {
-                                                    padding: '0',
-                                                    width: '100%',
-                                                    maxWidth: '600px',
-                                                    minWidth: 'none',
-                                                },
-                                            },
-                                            }}>
+                                    <Box sx={projectDescription}>
                                         { project.description }
                                     </Box>
-                                    <Box sx={{
-                                            padding: '2rem',
-                                            '@media (max-width: 600px)': {
-                                                padding: '0',
-                                                fontSize: '12px',
-                                                marginTop: '2rem',
-                                            },
-                                            '@media (max-width: 1000px)': {
-                                                '@media (orientation: landscape)': {
-                                                    padding: '0',
-                                                    marginTop: '1rem',
-                                                },
-                                            }
-                                        }}>
+                                    <Box sx={linkContainer}>
                                         <Link href={`${idx === 0 ? 'https://github.com/andyb2/Spotify-User-Profile' : project.link}`} target='_blank'>
                                             { project.link }
                                         </Link>
