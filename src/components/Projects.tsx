@@ -152,6 +152,7 @@ const Projects = ({ height }: Height) => {
                                 ':hover': {
                                     background: 'white',
                                     flex: '2',
+                                    marginLeft: '0.5rem',
                                     border: 'none',
                                     '@media (max-width: 330px)': {
                                         padding: '0.1rem',
