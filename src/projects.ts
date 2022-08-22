@@ -1,10 +1,12 @@
+
 export const projects = [
     {
         title: 'SPOTIFY USER',
-        image: 'https://raw.githubusercontent.com/andyb2/EmployeeDirectory/master/public/assets/employDSS.JPG',
+        // image: 'https://raw.githubusercontent.com/andyb2/EmployeeDirectory/master/public/assets/employDSS.JPG',
         description: 'Spotify users can log into the application and display their recently played songs, top songs, top artists, and playlists. ',
         tech: ['REACT', 'REDUX', 'EXPRESS', 'NODE', 'SPOTIFY API'],
-        link: 'Click here for the repository.'
+        link: 'Click here for the repository.',
+        image: './img/SpotifyProfile.JPG',
     },
     {
         title: 'OPEN CHAT',

@@ -215,6 +215,8 @@ const Projects = ({ height }: Height) => {
                                         <Box sx={projectDescription}>
                                             { project.description }
                                         </Box>
+                                        <img src={project.image}/>
+                                            {/* { project.image } */}
                                         <Box sx={linkContainer}>
                                             <Link href={`${idx === 0 ? 'https://github.com/andyb2/Spotify-User-Profile' : project.link}`} target='_blank'>
                                                 { project.link }
