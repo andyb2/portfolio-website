@@ -1,5 +1,4 @@
-import { createTheme } from "@mui/material/styles";
-import { lineHeight } from "@mui/system";
+import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   components: {
@@ -13,5 +12,5 @@ export const theme = createTheme({
         },
       },
     },
-  }
+  },
 });
