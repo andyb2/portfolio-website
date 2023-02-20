@@ -1,8 +1,10 @@
 import Nav from '../components/Nav';
-import { projects } from '../projectList';
+import { projectsList } from '../projectList';
 import styled from '@emotion/styled';
 import { Height } from './Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ChatIcon from '@mui/icons-material/Chat';
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import { Icon } from '@mui/material';
 
 const Container = styled.div`
@@ -10,8 +12,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
-  display: flex;
-  flex-direction: column;
 `;
 
 const ProjectsTitle = styled.p<Height>`
@@ -27,20 +27,20 @@ const ProjectsContainer = styled.div<any>`
   height: ${({ height }) =>
     height <= 450 ? 'calc(100% - 17vw)' : 'calc(100% - 16vw)'};
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
 
 const Card = styled.div<any>`
   display: flex;
   flex-direction: ${({ height }) => (height >= 450 ? 'column' : 'row')};
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border: 1px solid black;
   border-radius: 30px;
   max-width: ${({ height }) => (height > 450 ? '350px' : '550px')};
-  margin: ${({ height }) => (height <= 450 ? '0.5rem' : '1rem')};
   padding: 1rem;
+  min-height: 375px;
+  min-width: 375px;
 `;
 
 const TitleContainer = styled.div`
@@ -70,7 +70,8 @@ const LinkContainer = styled.div`
 const Link = styled.a`
   text-decoration: none;
   color: white;
-  background-color: #1db954;
+  // background-color: #1db954;
+  background-color: #169542;
   font-weight: bolder;
   font-size: 20px;
   border-radius: 15px;
@@ -83,21 +84,45 @@ const NavContainer = styled.div`
   right: 0;
 `;
 
+const ContentSpacing = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SideScroll = styled.div`
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem;
+`;
+
 const Projects = ({ height }: Height) => {
+  const icons = [GitHubIcon, GitHubIcon, ChatIcon, VideogameAssetIcon];
+
   return (
     <Container id='projects'>
       <ProjectsTitle height={height}>PROJECTS</ProjectsTitle>
       <ProjectsContainer height={height}>
-        <Card height={height}>
-          <Icon sx={{ fontSize: '80px' }} component={GitHubIcon} />
-          <TitleContainer>
-            <Title>{projects[0].title}</Title>
-          </TitleContainer>
-          <CardDescription>{projects[0].description}</CardDescription>
-          <LinkContainer>
-            <Link href={projects[0].link}>Open</Link>
-          </LinkContainer>
-        </Card>
+        <SideScroll>
+          {projectsList.map((project, idx) => {
+            return (
+              <Card key={project.title} height={height}>
+                <ContentSpacing>
+                  <Icon sx={{ fontSize: '80px' }} component={icons[idx]} />
+                  <TitleContainer>
+                    <Title>{project.title}</Title>
+                  </TitleContainer>
+                  <CardDescription>{project.description}</CardDescription>
+                </ContentSpacing>
+                <LinkContainer>
+                  <Link href={project.link}>Open</Link>
+                </LinkContainer>
+              </Card>
+            );
+          })}
+        </SideScroll>
       </ProjectsContainer>
       <NavContainer>
         <Nav project={true} />
