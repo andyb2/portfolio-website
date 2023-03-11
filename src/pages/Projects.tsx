@@ -1,20 +1,18 @@
-import Nav from '../components/Nav';
 import { projectsList } from '../projectList';
 import styled from '@emotion/styled';
-import { Height } from './Home';
+import { IProps } from './Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ChatIcon from '@mui/icons-material/Chat';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import { Icon } from '@mui/material';
+import { Animate } from '../App';
 
 const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
+  padding-top: 3.5rem;
   background-color: white;
 `;
 
-const ProjectsTitle = styled.p<Height>`
+const ProjectsTitle = styled.p<IProps>`
   font-size: ${({ height }) => (height <= 450 ? '8vw' : '13vw')};
   line-height: 0.65;
   margin: 0;
@@ -24,23 +22,24 @@ const ProjectsTitle = styled.p<Height>`
 `;
 
 const ProjectsContainer = styled.div<any>`
-  height: ${({ height }) =>
-    height <= 450 ? 'calc(100% - 17vw)' : 'calc(100% - 16vw)'};
   display: flex;
   align-items: center;
+  flex-direction: column;
+  padding: 1rem 0 1rem 0;
 `;
 
 const Card = styled.div<any>`
   display: flex;
-  flex-direction: ${({ height }) => (height >= 450 ? 'column' : 'row')};
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
   border-radius: 30px;
-  max-width: ${({ height }) => (height > 450 ? '350px' : '550px')};
   padding: 1rem;
-  min-height: 375px;
-  min-width: 375px;
+  height: 400px;
+  width: 300px;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
 `;
 
 const TitleContainer = styled.div`
@@ -70,18 +69,11 @@ const LinkContainer = styled.div`
 const Link = styled.a`
   text-decoration: none;
   color: white;
-  // background-color: #1db954;
   background-color: #169542;
   font-weight: bolder;
   font-size: 20px;
   border-radius: 15px;
   padding: 0.1rem 1rem 0.1rem 1rem;
-`;
-
-const NavContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
 `;
 
 const ContentSpacing = styled.div`
@@ -91,42 +83,42 @@ const ContentSpacing = styled.div`
   align-items: center;
 `;
 
-const SideScroll = styled.div`
+const CardContainer = styled.div`
   display: flex;
-  overflow-x: auto;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
-  padding: 1rem;
+  width: 100%;
 `;
 
-const Projects = ({ height }: Height) => {
+const Projects = ({ height }: IProps) => {
   const icons = [GitHubIcon, GitHubIcon, ChatIcon, VideogameAssetIcon];
 
   return (
     <Container id='projects'>
       <ProjectsTitle height={height}>PROJECTS</ProjectsTitle>
       <ProjectsContainer height={height}>
-        <SideScroll>
+        <CardContainer>
           {projectsList.map((project, idx) => {
             return (
-              <Card key={project.title} height={height}>
-                <ContentSpacing>
-                  <Icon sx={{ fontSize: '80px' }} component={icons[idx]} />
-                  <TitleContainer>
-                    <Title>{project.title}</Title>
-                  </TitleContainer>
-                  <CardDescription>{project.description}</CardDescription>
-                </ContentSpacing>
-                <LinkContainer>
-                  <Link href={project.link}>Open</Link>
-                </LinkContainer>
-              </Card>
+              <Animate className='card hidden'>
+                <Card key={project.title} height={height}>
+                  <ContentSpacing>
+                    <Icon sx={{ fontSize: '80px' }} component={icons[idx]} />
+                    <TitleContainer>
+                      <Title>{project.title}</Title>
+                    </TitleContainer>
+                    <CardDescription>{project.description}</CardDescription>
+                  </ContentSpacing>
+                  <LinkContainer>
+                    <Link href={project.link}>Open</Link>
+                  </LinkContainer>
+                </Card>
+              </Animate>
             );
           })}
-        </SideScroll>
+        </CardContainer>
       </ProjectsContainer>
-      <NavContainer>
-        <Nav project={true} />
-      </NavContainer>
     </Container>
   );
 };
