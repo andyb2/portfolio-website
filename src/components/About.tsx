@@ -1,33 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Box } from '@mui/system';
 import styled from '@emotion/styled';
-import { Height } from '../pages/Home';
+import { IProps } from '../pages/Home';
+import { Animate } from '../App';
 
 const aboutContainer = {
   minWidth: '100%',
   padding: '0.5rem 0 0.5rem 0',
-  zIndex: '100',
-  height: '100%',
-  minHeight: '100%',
 };
 
 const aboutContentSpacer = {
   display: 'flex',
   flexDirection: 'column',
-  height: '100%',
-  justifyContent: 'space-between',
 };
 
 const topLineContainer = {
   display: 'flex',
   width: '100%',
   justifyContent: 'flex-start',
-};
-
-const bottomLineContainer = {
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'flex-end',
 };
 
 const aboutTextCenterContent = {
@@ -37,27 +27,29 @@ const aboutTextCenterContent = {
   alignItems: 'center',
 };
 
-const AboutTextContainer = styled.div<Height>`
+const AboutTextContainer = styled.div<IProps>`
   display: flex;
   max-width: 800px;
-  gap: ${({ height }) => (height <= 420 ? '0.1rem' : '1rem')};
+  padding: 5rem;
+  margin: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem 0 2rem;
   @media (max-width: 600px) {
     gap: 0.1rem;
   }
 `;
 
-const AboutText = styled.p<Height>`
+const AboutText = styled.p<IProps>`
   font-size: ${({ height }) => (height <= 450 ? '16px' : '25px')};
-  color: #c3ca86;
   display: flex;
   justify-content: center;
   margin: ${({ height }) => (height <= 450 ? '0.1rem' : '1rem')};
   text-align: center;
   width: 100%;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  margin: 0;
   @media (max-width: 600px) {
     margin: 0;
     padding: 0.5rem;
@@ -76,18 +68,25 @@ const line = {
   '&.active': {
     width: 'none',
     flex: '2',
-    height: '4px',
-    backgroundColor: '#c3ca86',
+    height: '1px',
+    backgroundColor: 'black',
   },
 };
 
 interface Active {
-  active: boolean;
+  active?: boolean;
   height: number;
 }
 
 const About = ({ active, height }: Active) => {
   const [animate, setAnimate] = useState(false);
+  const aboutMe = [
+    `Hi! I'm Andrew, and I'm an aspiring software developer.`,
+    ` I enjoy spending my time researching and developing various
+  types of applications.`,
+    `Sprinkle a little golf, hockey and videogames in there and
+  you've got me figured out.`,
+  ];
 
   useEffect(() => {
     setTimeout(() => setAnimate(true), 100);
@@ -101,21 +100,14 @@ const About = ({ active, height }: Active) => {
         </Box>
         <Box sx={aboutTextCenterContent}>
           <AboutTextContainer height={height}>
-            <AboutText height={height}>
-              Hi! I'm Andrew, and I'm an aspiring software developer.
-            </AboutText>
-            <AboutText height={height}>
-              I enjoy spending my time researching and developing various types
-              of applications.
-            </AboutText>
-            <AboutText height={height}>
-              Sprinkle a little golf, hockey and videogames in there and you've
-              got me figured out.
-            </AboutText>
+            {aboutMe.map(text => {
+              return (
+                <Animate className='about hidden'>
+                  <AboutText height={height}>{text}</AboutText>
+                </Animate>
+              );
+            })}
           </AboutTextContainer>
-        </Box>
-        <Box sx={bottomLineContainer}>
-          <Box className={`${animate ? 'active' : ''}`} sx={line} />
         </Box>
       </Box>
     </Box>
