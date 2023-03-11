@@ -45,11 +45,10 @@ const about = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  paddingBottom: '1rem',
 };
 
 const introduction = {
-  padding: '1rem',
+  paddingTop: '2.5rem',
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
