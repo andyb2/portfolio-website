@@ -25,7 +25,7 @@ const ProjectsContainer = styled.div<any>`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 1rem 0 1rem 0;
+  padding: 3.5rem 0 3.5rem 0;
 `;
 
 const Card = styled.div<any>`
@@ -36,7 +36,7 @@ const Card = styled.div<any>`
   border: 1px solid black;
   border-radius: 30px;
   padding: 1rem;
-  height: 400px;
+  height: 325px;
   width: 300px;
   margin-left: 0.1rem;
   margin-right: 0.1rem;
@@ -111,7 +111,9 @@ const Projects = ({ height }: IProps) => {
                     <CardDescription>{project.description}</CardDescription>
                   </ContentSpacing>
                   <LinkContainer>
-                    <Link href={project.link}>Open</Link>
+                    <Link href={project.link} target='_blank'>
+                      Open
+                    </Link>
                   </LinkContainer>
                 </Card>
               </Animate>
