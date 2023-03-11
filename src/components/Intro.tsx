@@ -33,10 +33,11 @@ const secondAnimation = keyframes`
 
 const introBox1 = {
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
-  height: '398px',
+  // height: '400px',
 };
 
 interface IProps {
@@ -62,43 +63,41 @@ const Intro = ({ active, setActive }: IProps) => {
 
   return (
     <Box sx={introBox1}>
-      <Typography component='div'>
-        {contents.map((snippet, idx) => {
-          return (
-            <Typography
-              key={`${snippet}`}
-              onAnimationEnd={idx === 2 ? () => eventTrigger() : undefined}
-              sx={
-                !finish
-                  ? {
-                      fontSize: '8vmin',
-                      color: 'black',
-                      textTransform: 'uppercase',
-                      lineHeight: 0.8,
-                      animation:
-                        idx !== 1
-                          ? `${firstAnimation} ease-in 5s`
-                          : `${firstAnimation} ease-in 2s`,
-                    }
-                  : {
-                      display: !active ? 'none' : 'block',
-                      opacity: '0',
-                      fontSize: '8vmin',
-                      color: 'black',
-                      textTransform: 'uppercase',
-                      lineHeight: 0.8,
-                      animation:
-                        idx !== 1
-                          ? `${secondAnimation} ease-in 1s`
-                          : `${secondAnimation} ease-in 2s`,
-                    }
-              }
-            >
-              {snippet}
-            </Typography>
-          );
-        })}
-      </Typography>
+      {contents.map((snippet, idx) => {
+        return (
+          <Typography
+            key={`${snippet}`}
+            onAnimationEnd={idx === 2 ? () => eventTrigger() : undefined}
+            sx={
+              !finish
+                ? {
+                    fontSize: '8vmin',
+                    color: 'black',
+                    textTransform: 'uppercase',
+                    lineHeight: 0.8,
+                    animation:
+                      idx !== 1
+                        ? `${firstAnimation} ease-in 5s`
+                        : `${firstAnimation} ease-in 2s`,
+                  }
+                : {
+                    display: !active ? 'none' : 'block',
+                    opacity: '0',
+                    fontSize: '8vmin',
+                    color: 'black',
+                    textTransform: 'uppercase',
+                    lineHeight: 0.8,
+                    animation:
+                      idx !== 1
+                        ? `${secondAnimation} ease-in 1s`
+                        : `${secondAnimation} ease-in 2s`,
+                  }
+            }
+          >
+            {snippet}
+          </Typography>
+        );
+      })}
     </Box>
   );
 };
