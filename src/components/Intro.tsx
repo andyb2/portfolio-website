@@ -5,19 +5,19 @@ import { keyframes } from '@emotion/react';
 
 const firstAnimation = keyframes`
     0% {
-        color: black
+        color: white
     } 
     15% {
-        color: black
+        color: white
     }
     25% {
-        color: black
+        color: white
     }
     75% {
-        color: #c3ca86
+        color: black
     }
     100% {
-        color: #c3ca86
+        color: black
     }
 `;
 
@@ -36,6 +36,7 @@ const introBox1 = {
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
+  height: '398px',
 };
 
 interface IProps {
@@ -71,7 +72,7 @@ const Intro = ({ active, setActive }: IProps) => {
                 !finish
                   ? {
                       fontSize: '8vmin',
-                      color: '#c3ca86',
+                      color: 'black',
                       textTransform: 'uppercase',
                       lineHeight: 0.8,
                       animation:
@@ -83,7 +84,7 @@ const Intro = ({ active, setActive }: IProps) => {
                       display: !active ? 'none' : 'block',
                       opacity: '0',
                       fontSize: '8vmin',
-                      color: '#c3ca86',
+                      color: 'black',
                       textTransform: 'uppercase',
                       lineHeight: 0.8,
                       animation:
