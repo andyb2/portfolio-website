@@ -1,23 +1,33 @@
 import { FC } from 'react';
 import { Link } from 'react-scroll';
 import styled from '@emotion/styled';
+import Socials from './Socials';
 
 interface IProps {
   home?: boolean;
   project?: boolean;
 }
 
-const NavContainer = styled.nav``;
+const NavContainer = styled.nav`
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  z-index: 101;
+  border-bottom: 1px solid black;
+`;
 
 const NavUl = styled.ul`
   list-style: none;
   margin: 0;
+  display: flex;
+  background-color: white;
 `;
 
-const NavItem = styled.li<any>`
-  position: relative;
-  z-index: 100;
-  font-size: 3rem;
+const NavLi = styled.li<any>`
+  font-size: 2rem;
   color: ${({ project }) => (!project ? 'black' : '#c3ca86')};
   margin: 0;
   padding: 0;
@@ -26,24 +36,23 @@ const NavItem = styled.li<any>`
     cursor: pointer;
     color: ${({ project }) => (!project ? 'gray' : '#e0e5ab')};
   }
-  @media (max-width: 700px) {
-    font-size: 2.5rem;
-  }
 `;
 
 const Nav: FC<IProps> = ({ home, project }) => {
+  const navItems: string[] = ['projects', 'about'];
   return (
     <NavContainer>
+      <Socials />
       <NavUl>
-        {home ? (
-          <Link to='projects' spy={true} smooth={true} duration={500}>
-            <NavItem project={home}>PROJECTS</NavItem>
-          </Link>
-        ) : (
-          <Link to='about' spy={true} smooth={true} duration={500}>
-            <NavItem home={project}>ABOUT</NavItem>
-          </Link>
-        )}
+        {navItems.map(item => {
+          return (
+            <NavLi>
+              <Link to={item} spy={true} smooth={true} duration={500}>
+                {item.toUpperCase()}
+              </Link>
+            </NavLi>
+          );
+        })}
       </NavUl>
     </NavContainer>
   );
