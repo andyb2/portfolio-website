@@ -22,11 +22,15 @@ const NavContainer = styled.nav`
 const NavUl = styled.ul`
   list-style: none;
   margin: 0;
+  padding: 0;
   display: flex;
   background-color: white;
 `;
 
 const NavLi = styled.li<any>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 2rem;
   color: ${({ project }) => (!project ? 'black' : '#c3ca86')};
   margin: 0;
@@ -36,10 +40,13 @@ const NavLi = styled.li<any>`
     cursor: pointer;
     color: ${({ project }) => (!project ? 'gray' : '#e0e5ab')};
   }
+  @media (max-width: 700px) {
+    font-size: 1rem;
+  }
 `;
 
 const Nav: FC<IProps> = ({ home, project }) => {
-  const navItems: string[] = ['projects', 'about'];
+  const navItems: string[] = ['about', 'technology', 'projects'];
   return (
     <NavContainer>
       <Socials />
