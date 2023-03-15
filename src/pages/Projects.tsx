@@ -19,6 +19,7 @@ const ProjectsTitle = styled.p<IProps>`
   padding: 0;
   color: black;
   padding-bottom: 1rem;
+  translate: -0.5%;
 `;
 
 const ProjectsContainer = styled.div<any>`
