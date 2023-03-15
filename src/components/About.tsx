@@ -30,7 +30,8 @@ const aboutTextCenterContent = {
 const AboutTextContainer = styled.div<IProps>`
   display: flex;
   max-width: 800px;
-  padding: 3.5rem 3.5rem 0 3.5rem;
+  // padding: 3.5rem 3.5rem 0 3.5rem;
+  padding: 10rem 3.5rem 6.5rem 3.5rem;
   margin: 0;
   flex-direction: column;
   justify-content: center;
@@ -81,7 +82,7 @@ interface Active {
 const About = ({ active, height }: Active) => {
   const [animate, setAnimate] = useState(false);
   const aboutMe = [
-    `Hi! I'm Andrew, and I'm an aspiring software developer.`,
+    `Hi! I'm Andrew, and I'm an software developer specializing in the front end.`,
     ` I enjoy spending my time researching and developing various
   types of applications.`,
     `Sprinkle a little golf, hockey and videogames in there and
