@@ -89,7 +89,7 @@ const Tech = ({ height }: IProps) => {
 
   return (
     <Container id='technology'>
-      <TechTitle height={height}>TECHNOLOGIES</TechTitle>
+      <TechTitle height={height}>TECHNOLOGY</TechTitle>
       <TechContainer>
         {/* <Animate className='hidden'> */}
         <CenterTech>
