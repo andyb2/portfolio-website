@@ -75,10 +75,6 @@ const TechItem = styled.div`
   }
 `;
 
-// const Dash = styled.div`
-//   padding: 0 0 0 1rem;
-// `;
-
 const Tech = ({ height }: IProps) => {
   const technologies = [
     { title: 'FRONT END', tech: ['REACT', 'NEXT JS'] },
@@ -91,7 +87,6 @@ const Tech = ({ height }: IProps) => {
     <Container id='technology'>
       <TechTitle height={height}>TECHNOLOGY</TechTitle>
       <TechContainer>
-        {/* <Animate className='hidden'> */}
         <CenterTech>
           {technologies.map(({ title, tech }) => {
             return (
@@ -108,7 +103,6 @@ const Tech = ({ height }: IProps) => {
             );
           })}
         </CenterTech>
-        {/* </Animate> */}
       </TechContainer>
     </Container>
   );
