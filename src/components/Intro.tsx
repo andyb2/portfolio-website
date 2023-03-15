@@ -37,6 +37,7 @@ const introBox1 = {
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
+  padding: '11rem 0 7.5rem 0',
   // height: '400px',
 };
 
