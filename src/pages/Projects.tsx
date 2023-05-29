@@ -2,8 +2,8 @@ import { projectsList } from '../projectList';
 import styled from '@emotion/styled';
 import { IProps } from './Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import ChatIcon from '@mui/icons-material/Chat';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
 import { Icon } from '@mui/material';
 import { Animate } from '../App';
 
@@ -85,34 +85,37 @@ const ContentSpacing = styled.div`
 `;
 
 const CardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 700px;
 `;
 
 const Projects = ({ height }: IProps) => {
-  const icons = [GitHubIcon, GitHubIcon, ChatIcon, VideogameAssetIcon];
+  const icons: any = {
+    website: OpenInBrowserIcon,
+    repository: GitHubIcon,
+    game: VideogameAssetIcon,
+  };
 
   return (
     <Container id='projects'>
       <ProjectsTitle height={height}>PROJECTS</ProjectsTitle>
       <ProjectsContainer height={height}>
         <CardContainer>
-          {projectsList.map((project, idx) => {
+          {projectsList.map(({ title, type, description, link }) => {
             return (
               <Animate className='card hidden'>
-                <Card key={project.title} height={height}>
+                <Card key={title} height={height}>
                   <ContentSpacing>
-                    <Icon sx={{ fontSize: '80px' }} component={icons[idx]} />
+                    <Icon sx={{ fontSize: '80px' }} component={icons[type]} />
                     <TitleContainer>
-                      <Title>{project.title}</Title>
+                      <Title>{title}</Title>
                     </TitleContainer>
-                    <CardDescription>{project.description}</CardDescription>
+                    <CardDescription>{description}</CardDescription>
                   </ContentSpacing>
                   <LinkContainer>
-                    <Link href={project.link} target='_blank'>
+                    <Link href={link} target='_blank'>
                       Open
                     </Link>
                   </LinkContainer>
