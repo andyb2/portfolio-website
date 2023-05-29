@@ -89,6 +89,11 @@ const CardContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   width: 700px;
+  @media (max-width: 750px) {
+    width: 100%;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 `;
 
 const Projects = ({ height }: IProps) => {
