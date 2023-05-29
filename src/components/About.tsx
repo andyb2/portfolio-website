@@ -30,13 +30,14 @@ const aboutTextCenterContent = {
 const AboutTextContainer = styled.div<IProps>`
   display: flex;
   max-width: 800px;
-  padding: 10rem 3.5rem 6.5rem 3.5rem;
+  padding: 10rem 3.5rem;
   margin: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @media (max-width: 600px) {
     gap: 0.1rem;
+    padding: 10rem 1rem;
   }
 `;
 
