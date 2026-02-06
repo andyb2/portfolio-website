@@ -1,0 +1,13 @@
+// Same breakpoints as bootstrap
+// https://getbootstrap.com/docs/5.0/layout/breakpoints/
+$breakpoints: (
+  "xs": 0,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+// path to include media in modules
+@import "../../../../node_modules/include-media/dist/include-media";

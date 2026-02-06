@@ -1,0 +1,48 @@
+@use "../abstracts/index" as *;
+@use "../vendors/include-media" as *;
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(100vw / 1512 * 10);
+  line-height: normal;
+
+  @include media("<xl") {
+    font-size: calc(100vw / 1200 * 10);
+  }
+
+  @include media("<lg") {
+    font-size: calc(100vw / 992 * 10);
+  }
+
+  @include media("<md") {
+    font-size: calc(100vw / 768 * 10);
+  }
+
+  @include media("<sm") {
+    font-size: calc(100vw / 375 * 10);
+  }
+}
+
+body {
+  height: 100%;
+  //   font-family: sans-serif;
+  font-weight: 400;
+  font-size: 2.8rem; //default font size of 28px
+  color: black;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $color-light-grey;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

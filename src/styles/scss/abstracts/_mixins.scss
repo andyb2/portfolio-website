@@ -1,0 +1,49 @@
+@use "variables" as *;
+
+@mixin h1 {
+  font-family: $font-libre-baskerville;
+  font-size: 6rem;
+  line-height: 130%;
+  color: $color-white;
+  text-align: center;
+}
+
+@mixin p {
+  font-size: 2.4rem;
+  color: $color-white;
+  text-align: center;
+  font-family: $font-lato;
+}
+
+@mixin btn {
+  font-family: $font-lato;
+  font-size: 2rem;
+  color: $color-white;
+  border: 1px solid black;
+  background-color: black;
+  width: fit-content;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+@mixin form-p {
+  font-size: 1.6rem;
+  line-height: 100%;
+  color: $color-black;
+  text-align: left;
+  font-family: $font-lato;
+}
+
+@mixin form-h1 {
+  font-family: $font-libre-baskerville;
+  font-size: 1.6rem;
+  line-height: 130%;
+  color: $color-black;
+  text-align: left;
+}

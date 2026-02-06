@@ -1,0 +1,352 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.home-page {
+  position: relative;
+
+  .starting-window {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      // position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+      z-index: 1;
+      animation: fadeIn 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+      width: 100%;
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        @include h1;
+        margin-bottom: 2rem;
+      }
+
+      p {
+        font-size: 2.4rem;
+        color: $color-white;
+        text-align: center;
+        font-family: $font-lato;
+      }
+
+      a {
+        margin-top: 2rem;
+        @include btn;
+      }
+    }
+  }
+
+  // .image-container {
+  //   display: flex;
+  //   width: 100%;
+  //   height: 100vh;
+  //   position: relative;
+
+  //   &.fixed {
+  //     position: fixed;
+  //     top: 0;
+  //     left: 0;
+  //     z-index: -1;
+  //   }
+
+  //   img {
+  //     object-position: 50% 100%;
+  //   }
+
+  //   .overlay {
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     background-color: rgba(0, 0, 0, 0.6);
+  //   }
+  // }
+
+  .video-container {
+    width: 100%;
+    height: 100vh;
+
+    &.ended {
+      position: fixed;
+      top: 0 !important;
+      transform: none !important;
+      left: 0;
+      z-index: -1;
+    }
+
+    video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .rsvp-form-container {
+    height: 100vh;
+    width: 100%;
+    // background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+
+      // subtle "dither" noise (less pattern-y than the 2px ring look)
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.02) 0px,
+          rgba(255, 255, 255, 0.02) 1px,
+          rgba(0, 0, 0, 0.02) 1px,
+          rgba(0, 0, 0, 0.02) 2px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.015) 0px,
+          rgba(255, 255, 255, 0.015) 1px,
+          rgba(0, 0, 0, 0.015) 1px,
+          rgba(0, 0, 0, 0.015) 3px
+        );
+
+      mix-blend-mode: overlay;
+      opacity: 0.35;
+    }
+
+    .password-container {
+      form {
+        input:not([type="submit"]) {
+          width: 40rem;
+          height: 4rem;
+          font-size: 1.6rem;
+          padding: 0 1rem;
+          border: 1px solid $color-black;
+        }
+
+        input[type="submit"] {
+          width: 10rem;
+          height: 4rem;
+          font-size: 1.6rem;
+          cursor: pointer;
+          border: 1px solid $color-black;
+          background-color: $color-light-grey;
+        }
+      }
+    }
+
+    .thank-you-container {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.7) 100%
+      );
+      padding: 2rem 4rem;
+      border-radius: 0.8rem;
+
+      p {
+        @include form-h1;
+        line-height: 150%;
+        text-align: center;
+        color: $color-black;
+      }
+
+      .success-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 4rem;
+
+        .checkmark {
+          width: 6rem;
+          height: 6rem;
+          stroke: #2ecc71;
+          stroke-width: 4;
+          stroke-miterlimit: 10;
+          animation: scale-in 0.4s ease-out forwards;
+        }
+
+        .checkmark-circle {
+          stroke-dasharray: 157;
+          stroke-dashoffset: 157;
+          animation: draw-circle 0.6s ease-out forwards;
+        }
+
+        .checkmark-check {
+          stroke-dasharray: 48;
+          stroke-dashoffset: 48;
+          animation: draw-check 0.4s 0.5s ease-out forwards;
+        }
+
+        @keyframes draw-circle {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        @keyframes draw-check {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        @keyframes scale-in {
+          0% {
+            transform: scale(0.7);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeIn 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+      max-width: 80%;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.7) 100%
+      );
+      padding: 2rem 4rem;
+      border-radius: 0.8rem;
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .members {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        legend {
+          @include form-h1;
+          margin-bottom: 1rem;
+        }
+
+        label {
+          margin-left: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          @include form-p;
+
+          input {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+            border: 1px solid $color-black;
+            margin: 0;
+          }
+        }
+      }
+
+      textarea,
+      input:not([type="submit"]) {
+        // width: 40rem;
+        width: 100%;
+        height: 4rem;
+        font-size: 1.6rem;
+        padding: 0 1rem;
+        @include form-p;
+
+        &::placeholder {
+          color: $color-black;
+        }
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        span {
+          @include form-h1;
+          margin-bottom: 0.5rem;
+        }
+
+        textarea {
+          height: 8rem;
+          resize: none;
+        }
+      }
+
+      input[type="submit"] {
+        width: 10rem;
+        height: 4rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+        border-radius: 0.8rem;
+        background-color: $color-black;
+        color: $color-white;
+        align-self: flex-end;
+        border: none;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+
+        &:hover {
+          background-color: $color-light-grey;
+          color: $color-black;
+        }
+      }
+    }
+  }
+}

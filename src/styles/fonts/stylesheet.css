@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Lato";
+  src:
+    url("Lato-Light.woff2") format("woff2"),
+    url("Lato-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src:
+    url("LibreBaskerville-Medium.woff2") format("woff2"),
+    url("LibreBaskerville-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
