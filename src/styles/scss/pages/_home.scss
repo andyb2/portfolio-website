@@ -82,7 +82,9 @@
   }
 
   .rsvp-form-container {
-    height: 100vh;
+    // height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -93,6 +95,7 @@
       rgba(0, 0, 0, 0.95) 100%
     );
     position: relative;
+    padding: 6rem 0;
 
     @include media("<sm") {
       min-height: 100vh;
@@ -268,7 +271,8 @@
     .form-container {
       animation: fadeIn 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
       width: 80%;
-      max-width: 1200px;
+      max-width: 800px;
+      // max-width: 1200px;
       background-color: $color-white;
       padding: 2rem 4rem;
       border-radius: 0.8rem;

@@ -12,7 +12,7 @@ export default function Home() {
           <div className='starting-window'>
             <div className='content-container'>
               <h1>
-                Sabrina & Andrews
+                Sabrina & Andrew's
                 <br />
                 Wedding
               </h1>
