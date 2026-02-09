@@ -1,11 +1,16 @@
 @use "variables" as *;
+@use "../vendors/include-media" as *;
 
 @mixin h1 {
-  font-family: $font-libre-baskerville;
+  font-family: $font-merriweather;
   font-size: 6rem;
   line-height: 130%;
   color: $color-white;
   text-align: center;
+
+  @include media("<sm") {
+    font-size: 3.6rem;
+  }
 }
 
 @mixin p {
@@ -13,22 +18,30 @@
   color: $color-white;
   text-align: center;
   font-family: $font-lato;
+
+  @include media("<sm") {
+    font-size: 1.8rem;
+  }
 }
 
 @mixin btn {
   font-family: $font-lato;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: $color-white;
-  border: 1px solid black;
-  background-color: black;
+  border: 1px solid $color-red;
+  background-color: $color-red;
   width: fit-content;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
+  height: 4rem;
+  padding: 0 2rem;
+  border-radius: 0.8rem;
+  line-height: 100%;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
 
   &:hover {
-    background-color: transparent;
+    background-color: rgba(140, 35, 35, 0.2);
   }
 }
 

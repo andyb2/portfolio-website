@@ -14,8 +14,6 @@ export default function Video() {
     const wrap = wrapRef.current;
     if (!video || !wrap) return;
 
-    let st: ScrollTrigger | null = null;
-
     const onLoadedMetadata = async () => {
       let tl = gsap.timeline({
         defaults: { duration: 4 },

@@ -14,32 +14,41 @@ export default function Password({
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log(data);
     const passwordInput = data["password"] as string;
     const isValid = l.find((user) => user.p === passwordInput);
 
     if (isValid) {
       setIsAuthenticated(true);
       setUser(isValid);
-    } else {
-      alert("Invalid password");
+      return;
     }
+
+    setError("password", {
+      type: "manual",
+      message: "Incorrect password. Please try again.",
+    });
   };
 
   return (
-    <div className='password-container'>
+    <div className='password-container' data-anchor-location='rsvp'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type='password'
-          placeholder='Please enter your password provided via mail'
-          {...register("password", {
-            min: 0,
-          })}
-        />
-        <input type='submit' />
+        {errors.password && (
+          <p className='error-message'>{String(errors.password.message)}</p>
+        )}
+        <div className='input-wrapper'>
+          <input
+            type='password'
+            placeholder='Please enter your password provided via mail'
+            {...register("password", {
+              min: 0,
+            })}
+          />
+          <input type='submit' />
+        </div>
       </form>
     </div>
   );

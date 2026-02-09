@@ -1,26 +1,67 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { User } from "./login";
+import HeartSVG from "./assets/heartSVG";
 
 export default function RSVPForm({ user }: { user: User }) {
   const [successfulSubmission, setSuccessfulSubmission] = useState(false);
+
+  const keyFromName = (name: string) =>
+    name
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+
+  const defaultPeopleAttending =
+    user &&
+    Object.fromEntries(
+      user.members.map((m) => [keyFromName(m.fullName), false]),
+    );
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      peopleAttending: defaultPeopleAttending,
+      fullNames: "",
+      dietaryRestrictions: "",
+      totalGuests: "",
+    },
+  });
+
   const onSubmit = async (data: any) => {
+    const attendanceByName =
+      user &&
+      Object.fromEntries(
+        user.members.map((m) => {
+          const key = keyFromName(m.fullName);
+          return [m.fullName, data.peopleAttending?.[key] ? "Yes" : "No"];
+        }),
+      );
+
+    const normalized = {
+      ...data,
+      peopleAttending: attendanceByName,
+      totalGuests:
+        data.totalGuests === "0" || data.totalGuests === 0
+          ? "None"
+          : data.totalGuests,
+    };
+
     const res = await fetch("https://formspree.io/f/mzdapyqg", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(normalized),
     });
 
     if (res.ok) {
+      console.log(true);
       setSuccessfulSubmission(true);
-      localStorage.setItem("rsvpSubmitted", "true");
     }
   };
 
@@ -29,20 +70,26 @@ export default function RSVPForm({ user }: { user: User }) {
       {successfulSubmission ? (
         <div className='thank-you-container'>
           <div className='success-wrapper'>
-            <svg className='checkmark' viewBox='0 0 52 52' aria-hidden='true'>
-              <circle
-                className='checkmark-circle'
-                cx='26'
-                cy='26'
-                r='25'
-                fill='none'
-              />
-              <path
-                className='checkmark-check'
-                fill='none'
-                d='M14 27l7 7 16-16'
-              />
-            </svg>
+            <div className='svg-container'>
+              <svg
+                className='checkmark'
+                viewBox='-2 -2 56 56'
+                aria-hidden='true'
+              >
+                <circle
+                  className='checkmark-circle'
+                  cx='26'
+                  cy='26'
+                  r='25'
+                  fill='none'
+                />
+                <path
+                  className='checkmark-check'
+                  fill='none'
+                  d='M14 27l7 7 16-16'
+                />
+              </svg>
+            </div>
           </div>
           <p>
             Thank you for your RSVP! <br />
@@ -50,48 +97,52 @@ export default function RSVPForm({ user }: { user: User }) {
           </p>
         </div>
       ) : (
-        <form className='rsvp-form' onSubmit={handleSubmit(onSubmit)}>
-          <fieldset className='members'>
-            <legend>Select attending family members</legend>
+        <div className='form-container' data-anchor-location='rsvp'>
+          <HeartSVG />
+          <h2 className='form-title'>RSVP</h2>
+          <p>Please let us know if you'll be joining us for our special day</p>
+          <form className='rsvp-form' onSubmit={handleSubmit(onSubmit)}>
+            <fieldset className='members'>
+              <legend>
+                Select all attending (if no one is attending leave blank)
+              </legend>
+              {user &&
+                user.members.map((member) => {
+                  const key = keyFromName(member.fullName);
+                  return (
+                    <label key={key}>
+                      <input
+                        type='checkbox'
+                        {...register(`peopleAttending.${key}`)}
+                      />
+                      {member.fullName}
+                    </label>
+                  );
+                })}
+            </fieldset>
+            <label className='form-field textarea-field'>
+              <span>Please list full name(s)</span>
+              <textarea {...register("fullNames")} />
+            </label>
 
-            {user &&
-              user.members.map((member) => (
-                <label key={member.fullName}>
-                  <input
-                    type='checkbox'
-                    value={member.fullName}
-                    {...register("peopleAttending", {})}
-                  />
-                  {member.fullName}
-                </label>
-              ))}
-          </fieldset>
-          <label className='form-field textarea-field'>
-            <span>Please list full name(s)</span>
-            <textarea {...register("fullNames")} />
-          </label>
+            <label className='form-field textarea-field'>
+              <span>Dietary restrictions (if any)</span>
+              <textarea {...register("dietaryRestrictions")} />
+            </label>
+            <label className='form-field'>
+              <span>
+                Please confirm the total number of guests attending (including
+                yourself)
+              </span>
+              <input type='text' {...register("totalGuests")} />
 
-          <label className='form-field textarea-field'>
-            <span>Dietary restrictions (if any)</span>
-            <textarea {...register("dietaryRestrictions")} />
-          </label>
-          <label className='form-field'>
-            <span>
-              Please confirm the total number of guests attending (including
-              yourself)
-            </span>
-            <input
-              type='number'
-              min={0}
-              {...register("totalGuests", {
-                required: "Please confirm the total number of guests",
-                valueAsNumber: true,
-              })}
-            />
-          </label>
-
-          <input type='submit' />
-        </form>
+              {errors.totalGuests && (
+                <p className='error'>{String(errors.totalGuests.message)}</p>
+              )}
+            </label>
+            <input type='submit' />
+          </form>
+        </div>
       )}
     </>
   );

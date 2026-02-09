@@ -8,7 +8,7 @@
 }
 
 html {
-  font-size: calc(100vw / 1512 * 10);
+  font-size: min(calc(100vw / 1512 * 10), 12px);
   line-height: normal;
 
   @include media("<xl") {
