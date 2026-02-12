@@ -1,59 +1,48 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { blurVid, blurVidWebm } from "../data/asset-list";
+import { blurVidWebm, landingImage } from "../data/asset-list";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Video() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  // const videoRef = useRef<HTMLVideoElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    const video = videoRef.current;
     const wrap = wrapRef.current;
-    if (!video || !wrap) return;
+    const image = imageRef.current;
+    if (!wrap || !image) return;
 
-    const onLoadedMetadata = async () => {
-      let tl = gsap.timeline({
-        defaults: { duration: 4 },
-        scrollTrigger: {
-          scrub: true,
-          trigger: wrap,
-          start: "top top",
-          // end: "+=100%",
-          end: "+=50%",
-          pin: wrap,
-          pinSpacing: true,
-          pinType: "fixed",
-        },
-        onComplete: () => {
-          wrapRef.current?.classList.add("ended");
-        },
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: wrap,
+        start: "top top",
+        end: "+=150%",
+        scrub: true,
+        pin: true,
+        pinSpacing: true,
+        markers: false,
+      },
+      onComplete: () => {
+        wrap.classList.add("ended");
+      },
+    });
 
-      tl.fromTo(
-        video,
-        { currentTime: 0 },
-        { currentTime: video.duration || 1 },
-      );
-    };
-
-    video.addEventListener("loadedmetadata", onLoadedMetadata);
+    tl.fromTo(image, { filter: "blur(4rem)" }, { filter: "blur(0px)" });
 
     return () => {
-      video.removeEventListener("loadedmetadata", onLoadedMetadata);
-      // st?.kill();
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 
   return (
-    <div ref={wrapRef} className='video-container'>
-      <video ref={videoRef} src={blurVid} muted playsInline preload='auto'>
-        <source src={blurVid} type='video/mp4' />
-        <source src={blurVidWebm} type='video/webm' />
-        Your browser does not support the video tag.
-      </video>
+    <div ref={wrapRef} className='container'>
+      <div className='image-container'>
+        <img ref={imageRef} src={landingImage} alt='Landing' />
+      </div>
       <div className='overlay'></div>
     </div>
   );
