@@ -100,7 +100,7 @@ export default function RSVPForm({ user }: { user: User }) {
         <div className='form-container' data-anchor-location='rsvp'>
           <HeartSVG />
           <h2 className='form-title'>RSVP</h2>
-          <p>Please let us know if you'll be joining us for our special day</p>
+          <p>Please let us know if you'll be joining us for our special day.</p>
           <form className='rsvp-form' onSubmit={handleSubmit(onSubmit)}>
             <fieldset className='members'>
               <legend>
@@ -132,9 +132,16 @@ export default function RSVPForm({ user }: { user: User }) {
             <label className='form-field'>
               <span>
                 Please confirm the total number of guests attending (including
-                yourself)
+                yourself). If NO ONE is attending, please enter "0" and submit
+                the form.
               </span>
-              <input type='text' {...register("totalGuests")} />
+              <input
+                type='text'
+                {...register("totalGuests", {
+                  required:
+                    "Please enter the number of guests (0 if no one is attending)",
+                })}
+              />
 
               {errors.totalGuests && (
                 <p className='error'>{String(errors.totalGuests.message)}</p>

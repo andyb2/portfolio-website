@@ -20,6 +20,7 @@ import image18 from "../assets/images/18.webp";
 
 // video
 import blurVideo from "../assets/video/blur-video-fixed.mp4";
+import blurVideoWebm from "../assets/video/blur-vp9-match.webm";
 
 export const imageList: string[] = [
   image1,
@@ -43,3 +44,4 @@ export const imageList: string[] = [
 ];
 
 export const blurVid: string = blurVideo;
+export const blurVidWebm: string = blurVideoWebm;

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { blurVid } from "../data/asset-list";
+import { blurVid, blurVidWebm } from "../data/asset-list";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,7 +49,11 @@ export default function Video() {
 
   return (
     <div ref={wrapRef} className='video-container'>
-      <video ref={videoRef} src={blurVid} muted playsInline preload='auto' />
+      <video ref={videoRef} src={blurVid} muted playsInline preload='auto'>
+        <source src={blurVid} type='video/mp4' />
+        <source src={blurVidWebm} type='video/webm' />
+        Your browser does not support the video tag.
+      </video>
       <div className='overlay'></div>
     </div>
   );
