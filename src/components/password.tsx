@@ -42,7 +42,7 @@ export default function Password({
         <div className='input-wrapper'>
           <input
             type='password'
-            placeholder='Please enter your password provided via mail'
+            placeholder='Please enter your password'
             {...register("password", {
               min: 0,
             })}

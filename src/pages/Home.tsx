@@ -17,9 +17,7 @@ export default function Home() {
                 Wedding
               </h1>
               <p>June 27th, 2026</p>
-              <a href='#rsvp' data-anchor-trigger='rsvp'>
-                RSVP
-              </a>
+              <button data-anchor-trigger='rsvp'>RSVP</button>
             </div>
           </div>
           <Video />
